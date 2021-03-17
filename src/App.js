@@ -1,17 +1,32 @@
 import './App.css';
-import { useState } from 'react';
+import Loader from 'react-loader-spinner';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [request, setRequest] = useState(null);
-  const sendRequest = (e) => {
-    fetch('http://localhost:3000')
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch('http://localhost:3010')
       .then(response => response.json())
-      .then(data => setRequest(data))
-  }
+      .then(data => {
+        setTimeout(() => {
+          setRequest(data);
+          setIsLoading(false);
+        }, 2000);
+      })
+  }, [])
+
+  const content = request ? (<p>The returned consumer key is {request.consumer_key}</p>) : null;
+  const loading = (
+      <p>
+        <Loader type="Oval" height="100" width="100" color="#2BAD60"/>
+      </p>)
   return (
     <div className="App">
-      <button onClick={sendRequest}>Send a request</button>
-      {request && (<p>The returned consumer key is {request.consumer_key}</p>)}
+      {content}
+      {isLoading && loading}
     </div>
   );
 }
