@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [request, setRequest] = useState(null);
+  const sendRequest = (e) => {
+    fetch('http://localhost:3000')
+      .then(response => response.json())
+      .then(data => setRequest(data))
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={sendRequest}>Send a request</button>
+      {request && (<p>The returned consumer key is {request.consumer_key}</p>)}
     </div>
   );
 }
