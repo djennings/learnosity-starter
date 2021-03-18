@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Learnosity from 'learnosity-sdk-nodejs';
 
 function App() {
-  const learnositySdk = new Learnosity();
   const [request, setRequest] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [security, setSecurity] = useState();
@@ -31,6 +30,7 @@ function App() {
 
   useEffect(() => {
     if (security) {
+      const learnositySdk = new Learnosity();
       setRequest(learnositySdk.init(
         // service type
         "questions",
@@ -61,8 +61,6 @@ function App() {
         }
       ));
     }
-  // TODO probably no reason so really fix this as this is disposable code
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [security]);
 
   // const content = request ? learnositySdk.init(JSON.stringify(request)) : null;
