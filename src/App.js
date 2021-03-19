@@ -18,10 +18,9 @@ function App() {
     fetch('http://localhost:3000/dev/learnosity/getAuth', {headers: myHeaders})
       .then(response => response.json())
       .then(data => {
-        setTimeout(() => {
-          setSecurity(data.auth.security);
-          setIsLoading(false);
-        }, 2000);
+        setSecurity(data.auth.security);
+        setIsLoading(false);
+
       })
       .catch((err) => {
         setIsLoading(false);
@@ -63,12 +62,11 @@ function App() {
     }
   }, [security]);
 
-  // const content = request ? learnositySdk.init(JSON.stringify(request)) : null;
+  window.LearnosityItems.init(JSON.stringify(request));
   const loading = (<Loader type="Oval" height="100" width="100" color="#2BAD60"/>)
-  console.log({request})
   return (
     <div className="App">
-      {/* {content} */}
+      <div id="learnosity_assess"></div>
       {isLoading && loading}
     </div>
   );
