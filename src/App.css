@@ -10,7 +10,7 @@ body {
 .lrn.lrn-assess .lrn-region:not(.lrn-items-region) .lrn_btn_blue, .lrn.lrn-assess .dialogs button.lrn_btn_blue {
     background-color: purple !important;
     border-radius: 999px;
-    border: 1px solid purple;
+    border: 1px solid purple !important;
 }
 
 button:hover.lrn_btn_blue {
