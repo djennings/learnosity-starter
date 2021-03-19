@@ -1,73 +1,40 @@
 import './App.css';
 import Loader from 'react-loader-spinner';
 import { useEffect, useState } from 'react';
-import Learnosity from 'learnosity-sdk-nodejs';
 
 function App() {
-  const [request, setRequest] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [security, setSecurity] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const initLearnosity = (security) => {
+    window.LearnosityItems.init(security);
+  }
 
   useEffect(() => {
-    console.clear()
-    setIsLoading(true);
+    const headers = new Headers();
+    headers.append('x-session-token', 'r:85f8bbd0494c6669055ac7e604ad0ade');
 
-    const myHeaders = new Headers();
-    myHeaders.append('x-session-token', 'r:85f8bbd0494c6669055ac7e604ad0ade');
-
-    fetch('http://localhost:3000/dev/learnosity/getAuth', {headers: myHeaders})
+    fetch('http://localhost:3000/dev/learnosity/getAuth', {headers: headers})
       .then(response => response.json())
       .then(data => {
-        setSecurity(data.auth.security);
+        console.log('security', data)
         setIsLoading(false);
-
+        initLearnosity(data.auth)
       })
       .catch((err) => {
         setIsLoading(false);
+        console.error(err);
       })
   }, [])
 
-  useEffect(() => {
-    if (security) {
-      const learnositySdk = new Learnosity();
-      setRequest(learnositySdk.init(
-        // service type
-        "questions",
+  const renderLoading = () => {
+    console.log('renderLoading')
+    return (<Loader type="Oval" height="100" width="100" color="#2BAD60"/>)
+  }
 
-        // security details
-        security,
-
-        // secret
-        "74c5fd430cf1242a527f6223aebd42d30464be22",
-
-        // request details
-        {
-          "type":       "local_practice",
-          "state":      "initial",
-          "questions":  [
-            {
-              "response_id":         "60005",
-              "type":                "association",
-              "stimulus":            "Match the cities to the parent nation.",
-              "stimulus_list":       ["London", "Dublin", "Paris", "Sydney"],
-              "possible_responses":  ["Australia", "France", "Ireland", "England"],
-              "validation": {
-              "score": 1,
-                  "value": ["England", "Ireland", "France", "Australia"]
-              }
-            }
-          ]
-        }
-      ));
-    }
-  }, [security]);
-
-  window.LearnosityItems.init(JSON.stringify(request));
-  const loading = (<Loader type="Oval" height="100" width="100" color="#2BAD60"/>)
+  if (isLoading) return renderLoading();
   return (
     <div className="App">
       <div id="learnosity_assess"></div>
-      {isLoading && loading}
     </div>
   );
 }
