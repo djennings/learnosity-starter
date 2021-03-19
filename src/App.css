@@ -18,6 +18,7 @@ button:hover.lrn_btn_blue {
 }
 
 .lrn .lrn_btn_sort {
+  color: red !important;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
