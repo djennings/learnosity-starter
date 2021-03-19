@@ -28,7 +28,7 @@ function App() {
 
   const renderLoading = () => {
     console.log('renderLoading')
-    return (<Loader type="Oval" height="100" width="100" color="#2BAD60"/>)
+    return (<Loader type="ThreeDots" height="100" width="100" color="gray"/>)
   }
 
   if (isLoading) return renderLoading();

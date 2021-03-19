@@ -6,3 +6,18 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.lrn.lrn-assess .lrn-region:not(.lrn-items-region) .lrn_btn_blue, .lrn.lrn-assess .dialogs button.lrn_btn_blue {
+    background-color: purple !important;
+    border-radius: 999px;
+    border: 1px solid purple;
+}
+
+button:hover.lrn_btn_blue {
+  opacity: .7
+}
+
+.lrn .lrn_btn_sort {
+  font-size: 24px;
+  font-weight: 600;
+}
