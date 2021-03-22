@@ -35,8 +35,32 @@ button:hover.lrn_btn_blue {
   border-radius: 999px !important;
 }
 
-.lrn .lrn_btn_sort {
-  color: red !important;
-  font-size: 24px;
-  font-weight: 600 !important;
+.lrn_question {
+  background-color: gray;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5em;
+  padding: 25px;
+  position: relative;
+}
+
+.lrn .lrn_sort_block>.lrn_item {
+  color: purple;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.lrn .lrn_sort_block>.lrn_item:hover {
+  font-style: italic;
+}
+
+.lrn .lrn_sort_block .lrn_sort_gripper {
+  color: black;
+  font-size: 1.5em;
+}
+
+.lrn-assess .timer.warning {
+  background-color: rgba(0, 0, 255, .5) !important;
+  border-radius: 5px;;
+  color: white;
 }
