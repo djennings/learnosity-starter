@@ -1,6 +1,8 @@
-import './App.css';
 import Loader from 'react-loader-spinner';
 import { useEffect, useState } from 'react';
+
+import './App.css';
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,12 +30,13 @@ function App() {
 
   const renderLoading = () => {
     console.log('renderLoading')
-    return (<Loader type="ThreeDots" height="100" width="100" color="gray"/>)
+    return (<Loader type="ThreeDots" className="loader" height="100" width="100" color="gray"/>)
   }
 
   if (isLoading) return renderLoading();
   return (
     <div className="App">
+      <h1>Sample assessment</h1>
       <div id="learnosity_assess"></div>
     </div>
   );

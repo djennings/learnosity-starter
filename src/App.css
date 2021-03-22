@@ -7,6 +7,20 @@ body {
   justify-content: center;
 }
 
+#root {
+  height: 100%;
+  margin: auto 25px;
+  width: 100%;
+}
+
+.loader {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
 .lrn.lrn-assess .lrn-region:not(.lrn-items-region) .lrn_btn_blue, .lrn.lrn-assess .dialogs button.lrn_btn_blue {
     background-color: purple !important;
     border-radius: 999px;
@@ -15,6 +29,10 @@ body {
 
 button:hover.lrn_btn_blue {
   opacity: .7
+}
+
+.lrn .lrn_btn {
+  border-radius: 999px !important;
 }
 
 .lrn .lrn_btn_sort {
