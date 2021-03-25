@@ -34,6 +34,22 @@ function App() {
   useEffect(() => {
     if (itemsApp) {
       itemsApp.on('test:ready', () => {
+        console.clear()
+        const questions = itemsApp.questions();
+        const next = document.querySelectorAll('.lrn_btn_blue')[6]
+        console.log(next.onclick)
+        next.onclick = () => {
+          const responses = itemsApp.getResponses()
+          console.log({responses})
+        }
+        Object.keys(questions).forEach(question => {
+          questions[question].once('validated', showQuestionAndResponse);
+          
+          function showQuestionAndResponse() {
+            console.log(questions[question].getQuestion());
+            console.log(questions[question].getResponse());
+          }
+        })
         setTestReady(true);
       })
     }
